@@ -1,10 +1,9 @@
 export class Task {
-    taskId : string;
+    taskId : number;
     taskName: string;
     project : string;
     comments : string;
     constructor () {
-      this.taskId = '';
       this.taskName = '';
       this.project = '';
       this.comments = '';

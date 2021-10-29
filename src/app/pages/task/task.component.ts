@@ -14,20 +14,20 @@ export class TaskComponent implements OnInit {
   dataSource: MatTableDataSource<any>;
   task = new Task();
   listTask = [];
-  taskid: string;
+  taskid: number;
   newTask: any;
   tempTask= [];
   projects = ['Angular', 'Java', '.NET'];
 
   constructor(private modalService: NgbModal) {
     this.task = new Task();
-    this.task.taskId ='1';
+    this.task.taskId =1;
     this.task.taskName = "Task Name 1";
     this.task.comments ="Task Name 1";
     this.task.project ="Java";
     this.listTask.push(this.task);
     this.task = new Task();
-    this.task.taskId ='2';
+    this.task.taskId =2;
     this.task.taskName = "Task Name 2";
     this.task.comments ="Task Name 2";
     this.task.project ="Angular";
@@ -63,7 +63,13 @@ export class TaskComponent implements OnInit {
     this.newTask = new Task();
   }
   open(content) {
+    if(this.listTask.length) {
+      this.taskid = this.listTask[this.listTask.length - 1].taskId + 1;
+    } else {
+      this.taskid = 1;
+    }
     this.newTask = new Task();
+    this.newTask.taskId = this.taskid;
     this.modalService.open(content, { centered: true });
   }
 }
